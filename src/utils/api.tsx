@@ -1,4 +1,4 @@
-const API_KEY = "b9ea57820cf74c649049213909ec8d96";
+const API_KEY = import.meta.env.VITE_REACT_APP_HSL_API_KEY;
 import { StopTimesResponse } from './types';
 
 export async function fetchTransportData<T>(query: string): Promise<T> {

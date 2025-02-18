@@ -13,16 +13,18 @@ export interface Stop {
       };
     };
   }
+
+  export interface StopTime {
+    realtimeArrival: number;
+    headsign: string;
+    trip: { route: { shortName: string } };
+  }
   
   export interface StopTimesResponse {
     data: {
       stop: {
         name: string;
-        stoptimesWithoutPatterns: {
-          realtimeArrival: number;
-          headsign: string;
-          trip: { route: { shortName: string } };
-        }[];
+        stoptimesWithoutPatterns: StopTime[];
       };
     };
   }

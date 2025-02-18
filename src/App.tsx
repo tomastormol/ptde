@@ -1,3 +1,4 @@
+import './App.css';
 import React, { useState, useEffect } from 'react';
 import { fetchTransportData } from './utils/api';
 import { Stop, StopsByRadiusResponse } from './utils/types';
@@ -49,12 +50,11 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <>
       <h1>Paradas cercanas en Helsinki</h1>
       <MapComponent stops={stops} simulatedLocation={simulatedLocation}/>
-      <StopsList stops={stops} onSelectStop={setSelectedStop} />
-      {selectedStop && <StopDetails stopId={selectedStop} />}
-    </div>
+      {/* <StopsList stops={stops} onSelectStop={setSelectedStop} /> */}
+    </>
   );
 };
 
