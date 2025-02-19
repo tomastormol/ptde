@@ -38,6 +38,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ stops, simulatedLocation })
     const map = mapRef.current;
     if (!map) return;
 
+    // Limpiar los marcadores anteriores
     map.eachLayer((layer) => {
       if (layer instanceof L.Marker && !layer.getPopup()) {
         map.removeLayer(layer);

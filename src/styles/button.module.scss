@@ -1,11 +1,13 @@
-$primary-color: #007bff;
+$primary-color: #fff;
 
 .button {
     background: $primary-color;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
+    color: gray;
+    padding: 0.9rem 1.2rem;
+    width: 120px;
+    border-radius: 0.5rem;
     border: none;
     cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   }
   

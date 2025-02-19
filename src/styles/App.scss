@@ -1,0 +1,62 @@
+// Variables
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$background-color: #f8f9fa;
+$font-family: 'Arial', sans-serif;
+$breakpoint-mobile: 768px; // Punto de corte para móvil
+
+// Estilos generales
+body {
+  font-family: $font-family;
+  margin: 0;
+  padding: 0;
+  background-color: $background-color;
+  height: 100vh;
+}
+
+#root {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+}
+
+// Contenedor principal
+.controls-container {
+  padding: 1rem;
+  background-color: #e2e2e2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+
+  .filter-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+}
+
+// Contenedor del mapa
+.map-container {
+  width: 100%;
+
+  .leaflet-container {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+// Estilos responsive
+@media (max-width: $breakpoint-mobile) {
+  .controls-container {
+    flex-direction: column;
+    padding: 0;
+    padding-bottom: 0.5rem;
+
+    .filter-buttons {
+
+      button: {
+        gap: 1rem;
+      }
+    }
+  }
+}
