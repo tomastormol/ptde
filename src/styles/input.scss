@@ -1,0 +1,56 @@
+.input-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 400px;
+    margin: 10px auto;
+    padding: 8px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    
+    input {
+      flex: 1;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      outline: none;
+      background-color: transparent;
+      color: #333;
+  
+      &::placeholder {
+        color: #aaa;
+      }
+    }
+  
+    .search-icon {
+      font-size: 20px;
+      color: #007bff;
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out;
+  
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+  
+  /* 📌 Responsive para móviles */
+  @media (max-width: 480px) {
+    .input-container {
+      width: 100%;
+      max-width: 90%;
+      padding: 6px;
+    }
+  
+    input {
+      font-size: 14px;
+      padding: 10px;
+    }
+  
+    .search-icon {
+      font-size: 18px;
+    }
+  }
+  

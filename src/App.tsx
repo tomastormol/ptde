@@ -2,6 +2,7 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import MapComponent from './components/MapComponent';
 import useStops from './hooks/useStops';
+import InputComponent from './components/InputComponent';
 
 const App: React.FC = () => {
   const simulatedLocation = { lat: 60.170657, lon: 24.941496 };
@@ -23,14 +24,12 @@ const App: React.FC = () => {
 
   return (
     <>
-      <input
-        type="text"
-        placeholder="Search for a stop..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="search-input"
-      />
-      <MapComponent stops={filteredStops} simulatedLocation={simulatedLocation} />
+      <div className="search-container">
+        <InputComponent value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+      </div>
+      <div className="map-container">
+        <MapComponent stops={filteredStops} simulatedLocation={simulatedLocation} />
+      </div>
     </>
   );
 };
