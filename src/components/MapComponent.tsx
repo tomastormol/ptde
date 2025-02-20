@@ -5,14 +5,41 @@ import { fetchStopTimes } from '../utils/api';
 import { Stop } from '../utils/types';
 import PopupComponent from './PopupComponent';
 import ReactDOMServer from 'react-dom/server';
-
-import redPin from '../assets/red-pin.png';
-import busPin from '../assets/bus-pin.png';
+import { FaBusAlt, FaTrain, FaSubway } from 'react-icons/fa';
+import { FaTrainTram } from "react-icons/fa6";
+import { MdLocationPin } from "react-icons/md";
 
 interface MapComponentProps {
   stops: Stop[];
   simulatedLocation: { lat: number; lon: number };
 }
+
+const getIconForStop = (vehicleMode: string): L.DivIcon => {
+  let iconComponent;
+  switch (vehicleMode) {
+    case 'BUS':
+      iconComponent = <FaBusAlt size={15} />;
+      break;
+    case 'TRAM':
+      iconComponent = <FaTrainTram size={15} />;
+      break;
+    case 'RAIL':
+      iconComponent = <FaTrain size={15} />;
+      break;
+    case 'SUBWAY':
+      iconComponent = <FaSubway size={15} />;
+      break;
+    default:
+      iconComponent = <FaBusAlt size={15} color="gray" />;
+  }
+
+  return L.divIcon({
+    html: ReactDOMServer.renderToString(iconComponent),
+    className: 'custom-icon',
+    iconSize: [30, 30],
+    iconAnchor: [15, 15],
+  });
+};
 
 const MapComponent: React.FC<MapComponentProps> = ({ stops, simulatedLocation }) => {
   const mapRef = useRef<L.Map | null>(null);
@@ -26,9 +53,11 @@ const MapComponent: React.FC<MapComponentProps> = ({ stops, simulatedLocation })
       }).addTo(mapRef.current);
 
       L.marker([simulatedLocation.lat, simulatedLocation.lon], {
-        icon: L.icon({ 
-          iconUrl: redPin,
+        icon: L.divIcon({
+          html: ReactDOMServer.renderToString(<MdLocationPin size={30} color="red" />),
+          className: 'custom-icon',
           iconSize: [30, 30],
+          iconAnchor: [15, 15],
         }),
       }).addTo(mapRef.current).bindPopup("My mock location");
     }
@@ -47,10 +76,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ stops, simulatedLocation })
 
     stops.forEach((stop) => {
       const marker = L.marker([stop.lat, stop.lon], {
-        icon: L.icon({ 
-          iconUrl: busPin,
-          iconSize: [30, 30],
-        }),
+        icon: getIconForStop(stop.vehicleMode),
       }).addTo(map);
 
       marker.on('click', async () => {

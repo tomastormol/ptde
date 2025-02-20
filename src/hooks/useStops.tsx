@@ -13,19 +13,17 @@ const useStops = (lat: number, lon: number, radius: number) => {
           .replace('$lat', lat.toString())
           .replace('$lon', lon.toString())
           .replace('$radius', radius.toString());
-    
+
         const result = await fetchTransportData<StopsByRadiusResponse>(query);
-    
+
         if (!result?.data?.stopsByRadius?.edges) {
           console.error('Invalid API response', result);
           return;
         }
-    
-        const busStops = result.data.stopsByRadius.edges
-          .filter((edge) => edge.node.stop.vehicleMode === 'BUS')
-          .map((edge) => edge.node.stop);
-    
-        const uniqueStopsMap = new Map(busStops.map((stop) => [stop.gtfsId, stop]));
+
+        const allStops = result.data.stopsByRadius.edges.map((edge) => edge.node.stop);
+
+        const uniqueStopsMap = new Map(allStops.map((stop) => [stop.gtfsId, stop]));
         
         setStops(Array.from(uniqueStopsMap.values()));
       } catch (error) {

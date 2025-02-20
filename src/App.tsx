@@ -7,11 +7,12 @@ import InputComponent from './components/InputComponent';
 
 const App: React.FC = () => {
   const simulatedLocation = { lat: 60.170657, lon: 24.941496 };
-  const stops = useStops(simulatedLocation.lat, simulatedLocation.lon, 1000);
 
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedTypes, setSelectedTypes] = useState<Set<string>>(new Set([]));
+
+  const stops = useStops(simulatedLocation.lat, simulatedLocation.lon, 1000);
   const [filteredStops, setFilteredStops] = useState(stops);
-  const [selectedType, setSelectedType] = useState<string | null>(null);
 
   useEffect(() => {
     let filtered = stops;
@@ -22,12 +23,24 @@ const App: React.FC = () => {
       );
     }
 
-    if (selectedType) {
-      filtered = filtered.filter(stop => stop.vehicleMode === selectedType);
+    if (selectedTypes.size > 0) {
+      filtered = filtered.filter(stop => selectedTypes.has(stop.vehicleMode));
     }
 
     setFilteredStops(filtered);
-  }, [searchTerm, stops, selectedType]);
+  }, [searchTerm, stops, selectedTypes]);
+
+  const handleTypeClick = (type: string) => {
+    const newSelectedTypes = new Set(selectedTypes);
+
+    if (newSelectedTypes.has(type)) {
+      newSelectedTypes.delete(type);
+    } else {
+      newSelectedTypes.add(type);
+    }
+
+    setSelectedTypes(newSelectedTypes);
+  };
 
   return (
     <>
@@ -36,9 +49,30 @@ const App: React.FC = () => {
           <InputComponent value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
         </div>
         <div className="filter-buttons">
-          <button onClick={() => setSelectedType('BUS')} className={buttonStyles.button}>Buses</button>
-          <button onClick={() => setSelectedType('TRAM')} className={buttonStyles.button}>Trams</button>
-          <button onClick={() => setSelectedType('TRAIN')} className={buttonStyles.button}>Trains</button>
+          <button
+            onClick={() => handleTypeClick('BUS')}
+            className={`${buttonStyles.button} ${selectedTypes.has('BUS') ? buttonStyles.active : ''}`}
+          >
+            Buses
+          </button>
+          <button
+            onClick={() => handleTypeClick('TRAM')}
+            className={`${buttonStyles.button} ${selectedTypes.has('TRAM') ? buttonStyles.active : ''}`}
+          >
+            Trams
+          </button>
+          <button
+            onClick={() => handleTypeClick('RAIL')}
+            className={`${buttonStyles.button} ${selectedTypes.has('RAIL') ? buttonStyles.active : ''}`}
+          >
+            Rails
+          </button>
+          <button
+            onClick={() => handleTypeClick('SUBWAY')}
+            className={`${buttonStyles.button} ${selectedTypes.has('SUBWAY') ? buttonStyles.active : ''}`}
+          >
+            Subway
+          </button>
         </div>
       </div>
       <div className="map-container">
