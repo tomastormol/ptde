@@ -45,7 +45,6 @@ const App: React.FC = () => {
 
   return (
     <>
-    <h6>Vercel test. I'll delete this line to test CI/CD </h6>
       <div className={appStyles.controlsContainer}>
         <InputComponent value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
         <div className={appStyles.filterButtons}>
