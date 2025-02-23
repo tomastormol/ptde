@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/input.scss";
+import inputStyles from "../styles/input.module.scss";
 
 interface InputComponentProps {
   value: string;
@@ -8,7 +8,7 @@ interface InputComponentProps {
 
 const InputComponent: React.FC<InputComponentProps> = ({ value, onChange }) => {
   return (
-    <div className="input-container">
+    <div className={inputStyles.container}>
       <input
         type="text"
         placeholder="Search for a stop..."

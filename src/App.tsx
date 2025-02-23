@@ -1,5 +1,6 @@
-import './styles/App.scss';
+import './styles/App.module.scss';
 import buttonStyles from './styles/Button.module.scss';
+import appStyles from './styles/App.module.scss';
 import React, { useState, useEffect } from 'react';
 import MapComponent from './components/MapComponent';
 import useStops from './hooks/useStops';
@@ -44,11 +45,9 @@ const App: React.FC = () => {
 
   return (
     <>
-      <div className="controls-container">
-        <div className="search-container">
-          <InputComponent value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
-        </div>
-        <div className="filter-buttons">
+      <div className={appStyles.controlsContainer}>
+        <InputComponent value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+        <div className={appStyles.filterButtons}>
           <button
             onClick={() => handleTypeClick('BUS')}
             className={`${buttonStyles.button} ${selectedTypes.has('BUS') ? buttonStyles.active : ''}`}
@@ -75,7 +74,7 @@ const App: React.FC = () => {
           </button>
         </div>
       </div>
-      <div className="map-container">
+      <div className={appStyles.mapContainer}>
         <MapComponent stops={filteredStops} simulatedLocation={simulatedLocation} />
       </div>
     </>

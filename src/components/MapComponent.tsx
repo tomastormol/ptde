@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
 import { fetchStopTimes } from '../utils/api';
 import { Stop } from '../utils/types';
 import PopupComponent from './PopupComponent';

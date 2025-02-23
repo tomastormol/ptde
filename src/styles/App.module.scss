@@ -19,7 +19,7 @@ body {
   height: 100%;
 }
 
-.controls-container {
+.controlsContainer {
   padding: 1rem;
   background-color: #e2e2e2;
   display: flex;
@@ -27,16 +27,18 @@ body {
   align-items: center;
   gap: 1rem;
 
-  .filter-buttons {
+  .filterButtons {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
   }
+
 }
 
-.map-container {
+.mapContainer {
   width: 100%;
+  height: calc(100vh - 6rem);
 
   .leaflet-container {
     height: 100%;
@@ -45,19 +47,11 @@ body {
 }
 
 @media (max-width: $breakpoint-mobile) {
-  .controls-container {
+  .controlsContainer {
     flex-direction: column;
     padding: 0;
     padding-bottom: 0.5rem;
 
-    .filter-buttons {
-      width: 100%;
-      flex-wrap: wrap;
-
-      button {
-        
-      }
-
-    }
+    
   }
 }

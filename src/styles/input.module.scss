@@ -1,8 +1,9 @@
-.input-container {
+.container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 310px;
+    width: calc(100vw - 2rem);
+    max-width: 350px;
     margin: 0.5rem;
     padding: 8px;
     background: #fff;
@@ -23,11 +24,4 @@
     }
 
   }
-  
-  /* 📌 Responsive para móviles */
-  // @media (max-width: 480px) {
-  //   .input-container {
-  //     width: 360px;
-  //   }
-  // }
   
