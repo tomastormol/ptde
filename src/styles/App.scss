@@ -3,9 +3,8 @@ $primary-color: #007bff;
 $secondary-color: #6c757d;
 $background-color: #f8f9fa;
 $font-family: 'Arial', sans-serif;
-$breakpoint-mobile: 768px; // Punto de corte para móvil
+$breakpoint-mobile: 768px;
 
-// Estilos generales
 body {
   font-family: $font-family;
   margin: 0;
@@ -20,22 +19,22 @@ body {
   height: 100%;
 }
 
-// Contenedor principal
 .controls-container {
   padding: 1rem;
   background-color: #e2e2e2;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
 
   .filter-buttons {
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 0.5rem;
   }
 }
 
-// Contenedor del mapa
 .map-container {
   width: 100%;
 
@@ -45,7 +44,6 @@ body {
   }
 }
 
-// Estilos responsive
 @media (max-width: $breakpoint-mobile) {
   .controls-container {
     flex-direction: column;
@@ -53,10 +51,13 @@ body {
     padding-bottom: 0.5rem;
 
     .filter-buttons {
+      width: 100%;
+      flex-wrap: wrap;
 
-      button: {
-        gap: 1rem;
+      button {
+        
       }
+
     }
   }
 }

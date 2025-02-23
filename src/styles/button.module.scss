@@ -1,13 +1,20 @@
 $primary-color: #fff;
+$active-color: #9d9d9d;
 
 .button {
     background: $primary-color;
     color: gray;
     padding: 0.9rem 1.2rem;
-    width: 120px;
     border-radius: 0.5rem;
     border: none;
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    &.active {
+      background-color: $active-color;
+      color: #fff;
+    }
   }
+  
+
   

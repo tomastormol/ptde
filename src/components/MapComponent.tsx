@@ -18,19 +18,19 @@ const getIconForStop = (vehicleMode: string): L.DivIcon => {
   let iconComponent;
   switch (vehicleMode) {
     case 'BUS':
-      iconComponent = <FaBusAlt size={15} />;
+      iconComponent = <FaBusAlt size={18} color='green'/>;
       break;
     case 'TRAM':
-      iconComponent = <FaTrainTram size={15} />;
+      iconComponent = <FaTrainTram size={18} color='blue'/>;
       break;
     case 'RAIL':
-      iconComponent = <FaTrain size={15} />;
+      iconComponent = <FaTrain size={18} color='orange'/>;
       break;
     case 'SUBWAY':
-      iconComponent = <FaSubway size={15} />;
+      iconComponent = <FaSubway size={18} color='green'/>;
       break;
     default:
-      iconComponent = <FaBusAlt size={15} color="gray" />;
+      iconComponent = <FaBusAlt size={18} color="gray" />;
   }
 
   return L.divIcon({

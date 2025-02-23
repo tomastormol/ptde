@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 300px;
+    width: 310px;
     margin: 0.5rem;
     padding: 8px;
     background: #fff;
@@ -25,9 +25,9 @@
   }
   
   /* 📌 Responsive para móviles */
-  @media (max-width: 480px) {
-    .input-container {
-      width: 360px;
-    }
-  }
+  // @media (max-width: 480px) {
+  //   .input-container {
+  //     width: 360px;
+  //   }
+  // }
   
