@@ -1,14 +1,25 @@
 # Public Transport Data Explorer
 
-Wiki created
+A web application to explore public transport data using the HSL API. It allows users to search for stations, visualize them on a map, and get transport information in real-time. Additionally, users can filter results using four buttons for bus, tram, rail, and subway.
 
+## Challenges and Solutions
 
-## Problems that I have faced
+### Duplicate Station IDs
 
-Some stations have the same ID, so when doing the map, React reports an error, I had to clean the array I get from the query to solve the problem.
-From experience I know that it is not good to use the ID itself or the index, I would like to use crypto.randomUUID(), but as there is no need to remove any element from the list, I don't see it necessary. 
+Some stations have the same ID, which caused React to report an error when rendering the map. To fix this, I cleaned the array received from the query before rendering.
 
-I have implemented an input to search for stations, the main problem was that every time a letter was typed, the whole map was repainted, the solution was to useRef.
+### Unique Keys in React
 
-## Better options
-If I were to release this website to production, I would use a GraphQL Client library, to better manage the cache and not make so many requests.
+Using the station ID or array index as a key in React can lead to issues. While crypto.randomUUID() would be a better approach, I found it unnecessary since no elements are removed dynamically from the list.
+
+### Search Input Performance
+
+Initially, every keystroke in the search input caused the entire map to re-render. To optimize this, I used useRef to prevent unnecessary updates and improve performance.
+
+## Potential Improvements
+
+- **GraphQL Client:** If this were a production application, I would integrate a GraphQL client library (like Apollo or URQL) to better manage caching and reduce API requests.
+- **Better UI/UX:** The UI could be improved by adding loading indicators, animations, and a more intuitive design.
+- **Error Handling:** Right now, API errors are handled minimally. A more robust error handling system could improve user experience.
+- **Performance Optimizations:** Using memoization techniques (useMemo, useCallback) in specific parts of the application could further enhance performance.
+- **Dockerization:** Containerizing the application would allow easier deployment on different platforms and ensure consistent development environments.
